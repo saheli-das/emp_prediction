@@ -21,7 +21,7 @@ option = st.radio("Choose input method:", ("Manual Input", "Upload CSV"))
 if option == "Manual Input":
     # Input fields for user data
     st.sidebar.header("Input Features")
-    tenure = st.sidebar.number_input("Tenure(in months)", min_value=0, max_value=1000, value=60)
+    tenure = st.sidebar.number_input("Tenure (in months)", min_value=0, max_value=1000, value=60)
     age = st.sidebar.number_input("Age", min_value=18, max_value=100, value=40)
     sex = st.sidebar.selectbox("Sex", ["M", "F"])
     no_of_projects = st.sidebar.number_input("Number of Projects", min_value=1, max_value=100, value=5)
@@ -33,11 +33,14 @@ if option == "Manual Input":
         "Manager", "Engineer", "Technique Leader", "Staff", 
         "Senior Engineer", "Senior Staff", "Assistant Engineer"
     ])
-    dept_names = st.sidebar.selectbox("Department Names", [
+    
+    # Use multiselect for department names
+    dept_names = st.sidebar.multiselect("Department Names", [
         "Marketing", "Human Resources", "Research", "Sales", 
         "Quality Management", "Production", "development", 
         "Finance", "Customer Service"
-    ])
+    ], default=["Marketing"])  # Set a default value if needed
+    
     no_of_departments = st.sidebar.number_input("Number of Departments", min_value=1, max_value=10, value=2)
 
     # Create a dictionary from the input data
@@ -49,7 +52,7 @@ if option == "Manual Input":
         "salary": salary,
         "Last_performance_rating": last_performance_rating,
         "title": title,  # Include missing columns
-        "dept_names": dept_names,  # Include missing columns
+        "dept_names": ", ".join(dept_names),  # Join selected departments with a comma
         "no_of_departments": no_of_departments  # Include missing columns
     }
 
