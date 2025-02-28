@@ -35,7 +35,7 @@ if option == "Manual Input":
     ])
     dept_names = st.sidebar.selectbox("Department Names", [
         "Marketing", "Human Resources", "Research", "Sales", 
-        "Quality Management", "Production", "Development", 
+        "Quality Management", "Production", "development", 
         "Finance", "Customer Service"
     ])
     no_of_departments = st.sidebar.number_input("Number of Departments", min_value=1, max_value=10, value=2)
